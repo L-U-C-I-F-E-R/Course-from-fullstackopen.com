@@ -2,9 +2,7 @@ import { useState } from "react";
 import Note from "./components/Note";
 
 const App = (props) => {
-  const [notes, setNotes] = useState(props.notes);
-  const [newNote, setNewNote] = useState('add...')
-  const [showAll, setShowAll] = useState(true)
+  
 
   const AddNote = (event) => {
     event.preventDefault()
@@ -24,9 +22,6 @@ const App = (props) => {
     console.log(event.target.value)
   }
 
-  const notesToShow = showAll
-   ? notes 
-   : notes.filter(note => note.important === true)
 
   return (
     <div>
