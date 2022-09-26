@@ -14,16 +14,16 @@ const App = () => {
             name: newPerson
         }
         //it`s working check on duplicate
-        const val = persons.map(person => JSON.stringify(person) === JSON.stringify(newName))
-        console.log(val) // ------ it`s [true, false]
-        const falseOrTrue = val.some(element => element === true)
-        console.log(falseOrTrue) // it`s just 'true' or 'false'
-        if (falseOrTrue === false){
-                setPersons(persons.concat(newName))
-                setNewPerson('') 
-            } else {
-                alert(`${newName.name} is already added`)
-            }
+        // const val = persons.map(person => JSON.stringify(person) === JSON.stringify(newName))
+        // console.log(val) // ------ it`s [true, false]
+        // const falseOrTrue = val.some(element => element === true)
+        // console.log(falseOrTrue) // it`s just 'true' or 'false'
+        // if (falseOrTrue === false){
+        //         setPersons(persons.concat(newName))
+        //         setNewPerson('') 
+        //     } else {
+        //         alert(`${newName.name} is already added`)
+        //     }
     }
 
 
