@@ -17,7 +17,8 @@ const App = () => {
         event.preventDefault()
         const newName = {
             name: newPerson,
-            number: number
+            number: number,
+            id: persons.length + 1
         }
         //it`s working check on duplicate
         const val = persons.map(person => JSON.stringify(person.name) === JSON.stringify(newName.name))
@@ -45,7 +46,7 @@ const App = () => {
     }
 
     const searchName = () => { 
-        if (search != '') {let some = persons.filter((person) => {
+       if (search != '') {let some = persons.filter((person) => {
             let name = JSON.stringify(person.name)
             let nameLowerCase = name.toLowerCase()
             if (name.includes(search) || nameLowerCase.includes(search)) {  
@@ -55,31 +56,32 @@ const App = () => {
         })
         return <ul> 
         {some.map(result => <li key={result.id}>{result.name}: {result.number}</li>)} </ul> }
+       
+       //it`s working
+
+        // if (search != ''){
+        //     let some = persons.map((person) => {
+        //         let name = JSON.stringify(person.name)
+        //         let nameLowerCase = name.toLowerCase()
+        //         if (name.includes(search) || nameLowerCase.includes(search)) {  
+        //             return person
+        //     }})
+        //     // console.log(some)
+        //     return <ul>
+        //         {some.map(result => {if(result != undefined){ return <li key={result.id}>{result.name}: {result.number}</li>}})} </ul> 
+        // }
+
+
+        // not working because nothing return
+    //      if (search != ''){
+    //         persons.forEach((person) => {
+    //             let name = JSON.stringify(person.name)
+    //             let nameLowerCase = name.toLowerCase()
+    //             if (name.includes(search) || nameLowerCase.includes(search)) {  
+    //                 console.log('<ul><li key={person.id}>{person.name}: {person.number}</li></ul>')
+    //         }})
+    //        }
         
-      
-        // let some = persons.map((person) => {
-        //     let name = JSON.stringify(person.name)
-        //     let nameLowerCase = name.toLowerCase()
-        //     if (name.includes(search) || nameLowerCase.includes(search)) {  
-        //         result = <div><ul><li key={person.id}>{person.name}: {person.number}</li></ul>
-        //         </div>
-                
-        //     }    
-            
-        //         // return console.log(`${person.name}:`)
-        // })
-        
-        
-        //  persons.forEach((person) => {
-        //     let name = JSON.stringify(person.name)
-        //     let nameLowerCase = name.toLowerCase()
-        //                     // console.log(name.includes(search) || nameLowerCase.includes(search))
-        //     if (name.includes(search) || nameLowerCase.includes(search)) {  
-        //     // return <ul>
-        //     //         <li key={person.id}>{person.name}: {person.number}</li>
-        //     //         </ul> 
-        //     return console.log(`${person.name}:`)
-        // }})
     }
 
     const showName = () => {
