@@ -2,12 +2,16 @@ import { useState } from 'react'
 
 const App = () => {
     const [persons, setPersons] = useState([
-        {name: 'Forest Gamp'},
-        {name: 'Forest Gam'}
+        { name: 'Arto Hellas', number: '040-123456', id: 1 },
+        { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+        { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+        { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
 ])
 
     const [newPerson, setNewPerson] = useState('')
     const [number, setNumber] = useState('')
+    const [search, setSearch] = useState('')
+    // const [searched, setSearched] = useState()
 
     const AddName = (event) => {
         event.preventDefault()
@@ -28,19 +32,71 @@ const App = () => {
             }
     }
 
-
     const HandlerChange = (a, event) => {
         console.log(a)
         switch (a) {
             case 1: setNewPerson(event.target.value);
             break;
-            case 2: setNumber(event.target.value)
+            case 2: setNumber(event.target.value);
+            break;
+            case 3: setSearch(event.target.value);
+            break;
         }
     }
+
+    const searchName = () => { 
+        if (search != '') {let some = persons.filter((person) => {
+            let name = JSON.stringify(person.name)
+            let nameLowerCase = name.toLowerCase()
+            if (name.includes(search) || nameLowerCase.includes(search)) {  
+                return person   
+            }    
+            
+        })
+        return <ul> 
+        {some.map(result => <li key={result.id}>{result.name}: {result.number}</li>)} </ul> }
+        
+      
+        // let some = persons.map((person) => {
+        //     let name = JSON.stringify(person.name)
+        //     let nameLowerCase = name.toLowerCase()
+        //     if (name.includes(search) || nameLowerCase.includes(search)) {  
+        //         result = <div><ul><li key={person.id}>{person.name}: {person.number}</li></ul>
+        //         </div>
+                
+        //     }    
+            
+        //         // return console.log(`${person.name}:`)
+        // })
+        
+        
+        //  persons.forEach((person) => {
+        //     let name = JSON.stringify(person.name)
+        //     let nameLowerCase = name.toLowerCase()
+        //                     // console.log(name.includes(search) || nameLowerCase.includes(search))
+        //     if (name.includes(search) || nameLowerCase.includes(search)) {  
+        //     // return <ul>
+        //     //         <li key={person.id}>{person.name}: {person.number}</li>
+        //     //         </ul> 
+        //     return console.log(`${person.name}:`)
+        // }})
+    }
+
+    const showName = () => {
+        if (search === '') {
+            return <ul>
+            {persons.map(person => <li key={person.name}>{person.name}: {person.number}</li>)}
+            </ul> 
+            }  
+        }
 
 return(
     <div>
         <h1>Phonebook</h1>
+        <input onChange={(e) => HandlerChange(3, e)} 
+        value={search}/>
+        <button onClick={searchName}>search</button>
+        <h1>Add a new</h1>
         <form onSubmit={AddName}>
             <div>
                 Name: <input onChange={(e) => HandlerChange(1, e)}
@@ -55,14 +111,15 @@ return(
             </div>
         </form>
         <h1>Numbers</h1>
-        <ul>
-            {persons.map(person => <li key={person.name}>{person.name}: {person.number}</li>)}
+        {showName()}
+        {searchName()}
+        
+        
             {/* {console.log(persons[2].number)} */}
             {/* {console.log(Object.getOwnPropertyNames(persons))} */}
-        </ul>
+        
     </div>    
 )
-
 }
 
 export default App;
