@@ -8,7 +8,7 @@ import App from './App';
 
 // ReactDOM.createRoot(document.getElementById('root')).render(<App notes={notes}/>);;
 
-const promise = axios.get('http://localhost:3001/persons')
+const promise = axios.get('https://restcountries.com/v3.1/all')
 console.log(promise)   //---but with it all begins working
 
 // const notes = [
