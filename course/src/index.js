@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import axios from 'axios';
 import App from './App';
 
+// const promise = axios.get('http://localhost:3001/persons')
+// console.log(promise) -- it is not working
 
 // ReactDOM.createRoot(document.getElementById('root')).render(<App notes={notes}/>);;
+
+const promise = axios.get('http://localhost:3001/persons')
+console.log(promise)   //---but with it all begins working
 
 // const notes = [
 //   {
