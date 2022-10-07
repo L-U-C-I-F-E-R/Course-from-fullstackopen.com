@@ -1,1 +1,0 @@
-# Course-from-fullstackopen.com
