@@ -3,12 +3,7 @@ import axios from "axios"
 
 
 const App = () => {
-    const [persons, setPersons] = useState([])
-
-    const [newPerson, setNewPerson] = useState('')
-    const [number, setNumber] = useState('')
-    const [search, setSearch] = useState('')
-    // const [searched, setSearched] = useState()
+    
 
     const hook = () => {
       axios
