@@ -54,6 +54,7 @@ const App = () => {
     }
 
     const searchName = () => { 
+        console.log(search)
        if (search !== '') {let some = persons.filter((person) => {
             let name = JSON.stringify(person.name)
             let nameLowerCase = name.toLowerCase()
