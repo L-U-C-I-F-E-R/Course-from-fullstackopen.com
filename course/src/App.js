@@ -21,8 +21,8 @@ const App = () => {
         const result = []
         for(const data of countries){
             // console.log(country.name.common)
-            const country = data.name.common.JSON.stringfy()
-            console.log(country)
+            const country = JSON.stringify(data.name.common)
+            // console.log(country)
             // if (country.includes(input) || country.toLowwerCase().includes(input)){
             //     result.concat(country)
             // }
@@ -37,7 +37,7 @@ const App = () => {
     const HandlerEvent = (event) => {
         // event.preventDefault()
         setInput(event.target.value)
-        // console.log(input)
+        console.log(input)
     }
 
 return(
