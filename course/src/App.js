@@ -5,6 +5,7 @@ import axios from "axios"
 const App = () => {
     const [input, setInput] = useState('')
     const [countries, setCountries] = useState()
+    const [listCountries, setListCountries] = useState([])
 
     useEffect(() => {
         axios
@@ -18,36 +19,60 @@ const App = () => {
 
     const searchCountry = () => {
         // console.log(countries[1].name.common)
-        const result = []
-        for(const data of countries){
             // console.log(country.name.common)
-            const country = JSON.stringify(data.name.common)
-            // console.log(country)
-            // if (country.includes(input) || country.toLowwerCase().includes(input)){
-            //     result.concat(country)
-            // }
-        }
+        // console.log(listCountries)
         
+        // array = countries.map((data) => {
+        //     const country = JSON.stringify(data.name.common)
+        //     if (country.includes(input) || country.toLowerCase().includes(input)){
+        //         return country
+        //     } 
+        // })
+        // let array = new Array()
+        // setListCountries(array)
+        // for(const data of countries){
+        //     const country = data.name.common
+        //     if (country.includes(input) || country.toLowerCase().includes(input)){
+        //        array.push(country)
+        //     }
+        // }
+        // console.log(array.length)
+        
+        // if (array.length < 11 || array.length === 0 ){
+        //     setListCountries(array)
+        //     console.log(listCountries)
+        // }
     }
 
-    const showCountry = () => {
-
-    }
+    // const showCountry = () => {
+    //     if (listCountries.length > 10 || listCountries.length === 0){
+    //         return <p>Not founded or too many matches, specify another filter</p>
+    //     }if (listCountries.length == 1){
+    //         return <ul>{listCountries[0]}</ul>
+    //     } else{
+    //          return <ul>{listCountries.map((country) => {<li>{country}</li>})}</ul>
+    //     }
+    // }
 
     const HandlerEvent = (event) => {
-        // event.preventDefault()
         setInput(event.target.value)
         console.log(input)
     }
-
+    
 return(
     <div>
-        <form onChange = {searchCountry}>
-            <p>Find countries</p>
-            <input 
-                onChange={HandlerEvent}
-                value={input}/>
-        </form>
+        {/* <form onChange = {(e) => {searchCountry(e)}}> */}
+            Find countries: <input 
+                            value={input}
+                            onChange={HandlerEvent}
+                            // type='text'
+                            
+                            />
+            
+        {/* </form> */}
+        <div>
+            {/* {showCountry()} */}
+        </div>
     </div>    
 )
 }
