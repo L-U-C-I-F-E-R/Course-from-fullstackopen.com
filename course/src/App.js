@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react' 
 import axios from "axios"
+import servService from './services/notes.js'
 
 
 const App = () => {
@@ -11,11 +12,10 @@ const App = () => {
     // const [searched, setSearched] = useState()
 
     const hook = () => {
-      axios
-        .get('http://localhost:3001/persons')
-        .then(response => {
-          console.log(response.date)
-          setPersons(response.data)
+    servService
+        .getAll()
+        .then(respon => {
+          setPersons(respon)
         })
     }
 
@@ -33,11 +33,10 @@ const App = () => {
         const falseOrTrue = val.some(element => element === true)
         // console.log(falseOrTrue) // it`s just 'true' or 'false'
         if (falseOrTrue === false){
-                axios
-                    .post('http://localhost:3001/persons', newName)
-                    .then(responce => {
-                        console.log(responce)
-                        setPersons(persons.concat(responce.data))
+                servService
+                    .create(newName)
+                    .then(respon => {
+                        setPersons(persons.concat(respon))
                     })
                 setNewPerson('') 
             } else {
