@@ -25,16 +25,20 @@ const App = () => {
         event.preventDefault()
         const newName = {
             name: newPerson,
-            number: number,
-            id: persons.length + 1
+            number: number
         }
         //it`s working check on duplicate
         const val = persons.map(person => JSON.stringify(person.name) === JSON.stringify(newName.name))
-        console.log(val) // ------ it`s [true, false]
+        // console.log(val) // ------ it`s [true, false]
         const falseOrTrue = val.some(element => element === true)
-        console.log(falseOrTrue) // it`s just 'true' or 'false'
+        // console.log(falseOrTrue) // it`s just 'true' or 'false'
         if (falseOrTrue === false){
-                setPersons(persons.concat(newName))
+                axios
+                    .post('http://localhost:3001/persons', newName)
+                    .then(responce => {
+                        console.log(responce)
+                        setPersons(persons.concat(responce.data))
+                    })
                 setNewPerson('') 
             } else {
                 alert(`${newName.name} is already added`)
@@ -55,13 +59,13 @@ const App = () => {
 
     const searchName = () => { 
         console.log(search)
-       if (search !== '') {let some = persons.filter((person) => {
+       if (search !== '') 
+       {let some = persons.filter((person) => {
             let name = JSON.stringify(person.name)
             let nameLowerCase = name.toLowerCase()
             if (name.includes(search) || nameLowerCase.includes(search)) {  
                 return person   
-            }    
-            
+            }   
         })
         return <ul> 
         {some.map(result => <li key={result.id}>{result.name}: {result.number}</li>)} </ul> }
