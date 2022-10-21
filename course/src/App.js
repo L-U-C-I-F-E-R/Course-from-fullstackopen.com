@@ -17,6 +17,7 @@ const App = () => {
         .then(respon => {
           setPersons(respon)
         })
+    console.log('reacting')
     }
 
     useEffect(hook, [])
@@ -96,10 +97,35 @@ const App = () => {
         
     }
 
+    const DeleteName = (id) => {
+        console.log(id)
+        servService
+            .httpdelete(id)
+            .then(() => hook())
+        // filterName(id)  
+    }
+
+    // const filterName = (id) => {
+    //     const note = persons.find(n => n.id === id + 1)
+    //     const newObject = {...note, id: 8}
+    //     axios
+    //         .put(`http://localhost:3001/persons/9`, newObject )
+    //         .then(() => {hook()
+    //             console.log(`curent id: ${persons[8].id}`)})
+        
+    // }
+
     const showName = () => {
         if (search === '') {
             return <ul>
-            {persons.map(person => <li key={person.name}>{person.name}: {person.number}</li>)}
+            {persons.map(person => <li key={person.id}>{person.name}: {person.number}
+            <button onClick={() => {DeleteName(person.id)}}>delete</button>
+            </li>)}
+             {/* look also funny */}
+            {/* {persons.map(person => <div>
+            <li key={person.name}>{person.name}: {person.number}</li>
+            <button onClick={DeleteName}>delete</button>
+            </div>)} */} 
             </ul> 
             }  
         }
@@ -125,7 +151,9 @@ return(
             </div>
         </form>
         <h1>Numbers</h1>
-        {showName()}
+        
+         {showName()}
+        
         {searchName()}
         
         
