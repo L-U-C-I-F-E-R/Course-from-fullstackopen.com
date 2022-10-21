@@ -99,9 +99,14 @@ const App = () => {
 
     const DeleteName = (id) => {
         console.log(id)
-        servService
+        const index = persons.findIndex(index => index.id === id)
+        
+        if (window.confirm(`Delete ${persons[index].name}?`)) {
+           servService
             .httpdelete(id)
-            .then(() => hook())
+            .then(() => hook()) 
+        }
+        
         // filterName(id)  
     }
 
