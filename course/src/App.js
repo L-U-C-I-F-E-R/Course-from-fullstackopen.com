@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react' 
-import axios from "axios"
 import servService from './services/notes.js'
-
+import './index.css'
 
 const App = () => {
     const [persons, setPersons] = useState([])
@@ -9,6 +8,7 @@ const App = () => {
     const [newPerson, setNewPerson] = useState('')
     const [number, setNumber] = useState('')
     const [search, setSearch] = useState('')
+    const [message, setMessage] = useState('')
     // const [searched, setSearched] = useState()
 
     const hook = () => {
@@ -40,9 +40,25 @@ const App = () => {
                         setPersons(persons.concat(respon))
                     })
                 setNewPerson('') 
+                setMessage(newName.name)
+                
             } else {
                 alert(`${newName.name} is already added`)
+                // Message(newName.name, 2)
             }
+    }
+
+    const Message = () => {
+        // switch(a){
+        //     case a = 1:
+        //         <div><p className='error'>Added {name}</p></div>
+        // }
+        if (message != '') {
+            return <p className='error'> Added {message}</p>
+        }
+        setTimeout(()=>{
+        setMessage('')
+        }, [5000])
     }
 
     const HandlerChange = (a, event) => {
@@ -138,6 +154,7 @@ const App = () => {
 return(
     <div>
         <h1>Phonebook</h1>
+        {Message()}
         <input onChange={(e) => HandlerChange(3, e)} 
         value={search}/>
         <button onClick={searchName}>search</button>
