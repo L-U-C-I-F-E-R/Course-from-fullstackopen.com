@@ -1,0 +1,20 @@
+{
+  "name": "servernodejs",
+  "version": "1.0.0",
+  "description": "Part 3 to course from fullstackopencom",
+  "main": "index.js",
+  "scripts": {
+    
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/L-U-C-I-F-E-R/Part-3-to-Course-from-fullstackopen.com.git"
+  },
+  "author": "Maksym",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/L-U-C-I-F-E-R/Part-3-to-Course-from-fullstackopen.com/issues"
+  },
+  "homepage": "https://github.com/L-U-C-I-F-E-R/Part-3-to-Course-from-fullstackopen.com#readme"
+}
