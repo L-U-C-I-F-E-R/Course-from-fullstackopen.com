@@ -36,9 +36,6 @@
       "id": 7
     },
     {
-      "id": 8
-    },
-    {
       "name": "Tim Mugoogle",
       "number": "123-234456",
       "id": 9
@@ -57,16 +54,6 @@
       "name": "Dan Abramo",
       "number": "24798654",
       "id": 12
-    },
-    {
-      "name": "Dan Abram",
-      "number": "89547625",
-      "id": 13
-    },
-    {
-      "name": "Mary Poppen",
-      "number": "89547625",
-      "id": 14
     }
   ]
 }

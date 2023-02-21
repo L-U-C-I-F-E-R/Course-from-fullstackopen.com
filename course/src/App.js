@@ -9,7 +9,7 @@ const App = () => {
     const [number, setNumber] = useState('')
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('')
-    // const [searched, setSearched] = useState()
+    const [searchON, setSearchON] = useState(false)
 
     const hook = () => {
     servService
@@ -49,11 +49,8 @@ const App = () => {
     }
 
     const Message = () => {
-        // switch(a){
-        //     case a = 1:
-        //         <div><p className='error'>Added {name}</p></div>
-        // }
-        if (message != '') {
+      
+        if (message !== '') {
             return <p className='error'> Added {message}</p>
         }
         setTimeout(()=>{
@@ -74,43 +71,21 @@ const App = () => {
     }
 
     const searchName = () => { 
-        console.log(search)
+        // if (searchON === true && search === ''){
+        //     setSearchON(false)
+        // }
        if (search !== '') 
-       {let some = persons.filter((person) => {
+       {
+        let some = persons.filter((person) => {
             let name = JSON.stringify(person.name)
             let nameLowerCase = name.toLowerCase()
             if (name.includes(search) || nameLowerCase.includes(search)) {  
                 return person   
             }   
+        
         })
         return <ul> 
         {some.map(result => <li key={result.id}>{result.name}: {result.number}</li>)} </ul> }
-       
-       //it`s working
-
-        // if (search != ''){
-        //     let some = persons.map((person) => {
-        //         let name = JSON.stringify(person.name)
-        //         let nameLowerCase = name.toLowerCase()
-        //         if (name.includes(search) || nameLowerCase.includes(search)) {  
-        //             return person
-        //     }})
-        //     // console.log(some)
-        //     return <ul>
-        //         {some.map(result => {if(result != undefined){ return <li key={result.id}>{result.name}: {result.number}</li>}})} </ul> 
-        // }
-
-
-        // not working because nothing return
-    //      if (search != ''){
-    //         persons.forEach((person) => {
-    //             let name = JSON.stringify(person.name)
-    //             let nameLowerCase = name.toLowerCase()
-    //             if (name.includes(search) || nameLowerCase.includes(search)) {  
-    //                 console.log('<ul><li key={person.id}>{person.name}: {person.number}</li></ul>')
-    //         }})
-    //        }
-        
     }
 
     const DeleteName = (id) => {
@@ -122,31 +97,18 @@ const App = () => {
             .httpdelete(id)
             .then(() => hook()) 
         }
-        
-        // filterName(id)  
     }
 
-    // const filterName = (id) => {
-    //     const note = persons.find(n => n.id === id + 1)
-    //     const newObject = {...note, id: 8}
-    //     axios
-    //         .put(`http://localhost:3001/persons/9`, newObject )
-    //         .then(() => {hook()
-    //             console.log(`curent id: ${persons[8].id}`)})
-        
-    // }
-
     const showName = () => {
+        console.log(searchON)
+        console.log(search)
         if (search === '') {
+           
+
             return <ul>
             {persons.map(person => <li key={person.id}>{person.name}: {person.number}
             <button onClick={() => {DeleteName(person.id)}}>delete</button>
             </li>)}
-             {/* look also funny */}
-            {/* {persons.map(person => <div>
-            <li key={person.name}>{person.name}: {person.number}</li>
-            <button onClick={DeleteName}>delete</button>
-            </div>)} */} 
             </ul> 
             }  
         }
@@ -155,9 +117,10 @@ return(
     <div>
         <h1>Phonebook</h1>
         {Message()}
-        <input onChange={(e) => HandlerChange(3, e)} 
+        <input onChange={(e) => HandlerChange(3, e)}
         value={search}/>
-        <button onClick={searchName}>search</button>
+        <button onClick={() => {setSearchON(!searchON)}}>
+        search</button>
         <h1>Add a new</h1>
         <form onSubmit={AddName}>
             <div>
@@ -173,18 +136,14 @@ return(
             </div>
         </form>
         <h1>Numbers</h1>
-        
-         {showName()}
-        
+        {showName()}
         {searchName()}
-        
-        
             {/* {console.log(persons[2].number)} */}
             {/* {console.log(Object.getOwnPropertyNames(persons))} */}
-        
     </div>    
 )
 }
 
 export default App;
 
+     
