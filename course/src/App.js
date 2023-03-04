@@ -62,18 +62,17 @@ const App = () => {
         console.log(a)
         switch (a) {
             case 1: setNewPerson(event.target.value);
-            break;
+                    break;
             case 2: setNumber(event.target.value);
-            break;
+                    break;
             case 3: setSearch(event.target.value);
-            break;
+                    break;
+            default:
+                    break
         }
     }
 
     const searchName = () => { 
-        // if (searchON === true && search === ''){
-        //     setSearchON(false)
-        // }
        if (search !== '') 
        {
         let some = persons.filter((person) => {
@@ -81,11 +80,14 @@ const App = () => {
             let nameLowerCase = name.toLowerCase()
             if (name.includes(search) || nameLowerCase.includes(search)) {  
                 return person   
-            }   
-        
-        })
+                } else {
+                    return null // Додайте повернення null як пустий результат
+                }
+
+            })
         return <ul> 
-        {some.map(result => <li key={result.id}>{result.name}: {result.number}</li>)} </ul> }
+        {some.map(result => <li key={result.id}>{result.name}: {result.number}</li>)} </ul> 
+        }
     }
 
     const DeleteName = (id) => {
@@ -102,16 +104,21 @@ const App = () => {
     const showName = () => {
         console.log(searchON)
         console.log(search)
-        if (search === '') {
-           
-
+        if (searchON === false || search === '') {
+            if (searchON !== false) { setSearchON(false)}
+            // setSearchON(false)  -- ne robe yuesli vpisat tot ge znacjenya із-за нескінченної рекурсії при ререндерингі реакту
             return <ul>
             {persons.map(person => <li key={person.id}>{person.name}: {person.number}
             <button onClick={() => {DeleteName(person.id)}}>delete</button>
             </li>)}
-            </ul> 
-            }  
+            </ul>   
+        } 
+        else {
+            console.log('searchName')
+            return searchName()
+            
         }
+    }
 
 return(
     <div>
@@ -137,7 +144,7 @@ return(
         </form>
         <h1>Numbers</h1>
         {showName()}
-        {searchName()}
+        {/* {searchName()} */}
             {/* {console.log(persons[2].number)} */}
             {/* {console.log(Object.getOwnPropertyNames(persons))} */}
     </div>    
